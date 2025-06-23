@@ -1,7 +1,12 @@
 import React from "react";
+import Navbar from "./sections/Navbar";
 
 const App = () => {
-  return <div className="text-7xl text-indigo-500">umaidRather</div>;
+  return (
+    <div className="relative w-screen min-h-screen overflow-x-hidden">
+      <Navbar />
+    </div>
+  );
 };
 
 export default App;
