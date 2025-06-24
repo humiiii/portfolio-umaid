@@ -1,10 +1,14 @@
 import React from "react";
 import Navbar from "./sections/Navbar";
+import Hero from "./sections/Hero";
+import Services from "./sections/Services";
 
 const App = () => {
   return (
-    <div className="relative w-screen min-h-screen overflow-x-hidden">
+    <div className="relative min-h-screen w-screen overflow-x-hidden">
       <Navbar />
+      <Hero />
+      <Services />
     </div>
   );
 };
