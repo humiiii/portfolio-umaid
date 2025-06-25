@@ -6,6 +6,7 @@ import Words from "./sections/Words";
 import ReactLenis from "lenis/react";
 import About from "./sections/About";
 import Works from "./sections/Works";
+import Banner from "./sections/Banner";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <Words />
       <About />
       <Works />
+      <Banner />
     </ReactLenis>
   );
 };
