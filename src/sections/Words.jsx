@@ -15,20 +15,21 @@ const Words = () => {
   const isDesktop = useMediaQuery({ minWidth: "48rem" }); //768px
 
   useGSAP(() => {
-    worksRef.current.forEach((el) => {
+    worksRef.current.forEach((el, i) => {
       if (!el) return;
 
       gsap.from(el, {
-        y: 200,
+        y: 100,
+        duration: 1,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: el,
-          start: "top 80%",
+          start: "top 85%",
         },
-        duration: 1,
-        ease: "circ.inOut",
       });
     });
   }, []);
+
   return (
     <section id="words" className="min-h-screen rounded-t-4xl bg-black">
       <AnimatedHeader

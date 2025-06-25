@@ -67,24 +67,24 @@ export const worksData = [
     ],
   },
   {
-    title: "Web & Mobile Apps",
+    title: "Huzaif Wani",
     description:
-      "Adrian’s expertise in web development is truly impressive. He delivered a robust and scalable solution for our e-commerce site, and our online sales have significantly increased since the launch. He’s a true professional!",
+      "His deep understanding of our requirements and keen attention to detail resulted in a website that not only met but far exceeded our expectations. His expertise in frontend is truly impressive—delivering seamless, high-performance solutions with clean, scalable code. He is a rare talent who combines technical brilliance with strong communication and problem-solving skills.",
     items: [
       {
-        title: "E-Commerce Development",
+        title: "Detail-Oriented Execution",
         description:
-          "Built robust, scalable solutions that directly contributed to increased online sales.",
+          "Translates requirements into high-performance results with precision and thoughtful implementation.",
       },
       {
-        title: "Web Development Expertise",
+        title: "Client-Centric Approach",
         description:
-          "Delivered professional-grade systems with a strong focus on performance and reliability.",
+          "Goes beyond expectations by deeply understanding needs and delivering tailored, effective outcomes.",
       },
       {
-        title: "Professional Delivery",
+        title: "Technical & Communication Skills",
         description:
-          "A true professional who ensures quality and client satisfaction at every step.",
+          "Blends technical brilliance with strong communication and problem-solving abilities.",
       },
     ],
   },

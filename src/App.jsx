@@ -4,6 +4,7 @@ import Hero from "./sections/Hero";
 import Services from "./sections/Services";
 import Words from "./sections/Words";
 import ReactLenis from "lenis/react";
+import About from "./sections/About";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Hero />
       <Services />
       <Words />
+      <About />
     </ReactLenis>
   );
 };

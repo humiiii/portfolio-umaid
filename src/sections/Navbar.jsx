@@ -107,10 +107,11 @@ const Navbar = () => {
         className="fixed z-50 flex h-full w-full flex-col justify-between gap-y-10 bg-black px-10 py-28 text-white/80 uppercase md:left-1/2 md:w-1/2"
       >
         <div className="flex flex-col gap-y-2 text-5xl lg:text-8xl">
-          {["home", "services", "about", "work", "contact"].map(
+          {["home", "words", "about", "work", "contact"].map(
             (section, index) => (
               <div key={index} ref={(el) => (linksRef.current[index] = el)}>
                 <Link
+                  onClick={toggleMenu}
                   className="cursor-pointer transition-all duration-300 hover:text-white"
                   to={`${section}`}
                   smooth
