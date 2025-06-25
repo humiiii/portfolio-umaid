@@ -3,8 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React from "react";
 
-
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
   useGSAP(() => {
@@ -39,7 +38,7 @@ const Services = () => {
   });
 
   return (
-    <section className="contact-text-responsive mt-20 mb-42 text-center leading-snug font-light">
+    <section className="contact-text-responsive mt-20 mb-42 overflow-hidden text-center leading-snug font-light">
       <div id="title_service_1" className="">
         <p>architecture</p>
       </div>
@@ -51,7 +50,10 @@ const Services = () => {
         <div className="bg-gold h-1 w-10 md:w-32" />
         <p>deployment</p>
       </div>
-      <div id="title_service_3" className="flex items-center justify-center gap-3 -translate-x-48">
+      <div
+        id="title_service_3"
+        className="flex -translate-x-48 items-center justify-center gap-3"
+      >
         <p>apis</p>
         <div className="bg-gold h-1 w-10 md:w-32" />
         <p>frontends</p>

@@ -1,78 +1,90 @@
 // index.js
-export const servicesData = [
+export const worksData = [
   {
-    title: "FullStack Development",
+    title: "Saira Bano",
     description:
-      "Your business deserves a fast, secure, and future-proof digital foundation. I develop custom web apps with clean architecture, optimized databases, and seamless integrations—ensuring reliability at every layer.",
+      "He is the embodiment of brilliance, and the epitome of perfection, possessing a sharp intellect and a keen eye for detail. Driven by a quest for excellence, he consistently strives for perfection in everything he does. His smart, analytical approach sets him apart and makes him a truly remarkable individual. Working with him has been a privilege and a rewarding experience. Wishing him all the best for the milestones that lie ahead.",
     items: [
       {
-        title: "Backend Engineering",
-        description: "(REST/GraphQL APIs, Microservices, Auth Systems)",
+        title: "Attention to Detail",
+        description:
+          "Consistently delivers polished, error-free work with a meticulous eye for refinement and precision.",
       },
       {
-        title: "Frontend Excellence",
-        description: "(React, Vue, TypeScript, Interactive UI/UX)",
+        title: "Smart & Analytical Thinking",
+        description:
+          "Solves complex problems efficiently with structured logic and a sharp, data-driven mindset.",
       },
       {
-        title: "Database Design",
-        description: "(SQL/NoSQL Optimization, Scalable Structures)",
+        title: "Striving for Perfection",
+        description:
+          "Pursues excellence in every project—going beyond requirements to create outstanding solutions.",
       },
     ],
   },
   {
-    title: "DevOps & Cloud Solutions",
+    title: "Nawreen Rafiqi",
     description:
-      "Deploying software shouldn't be a gamble. I automate infrastructure, enforce security, and leverage cloud platforms (AWS/Azure) to keep your app running smoothly—24/7, at any scale.",
+      "He is a highly talented individual whose creativity, skill, and dedication truly stand out. With a positive attitude and strong integrity, he combines expertise with a supportive nature that makes working with him a pleasure. I’ve had the privilege of working with him and have always been impressed by his exceptional work. Wishing him great success in his future endeavours!",
     items: [
       {
-        title: "CI/CD Pipelines",
-        description: "(GitHub Actions, Docker, Kubernetes)",
+        title: "Creative Excellence",
+        description:
+          "Brings originality and innovation into every project with standout ideas and execution.",
       },
       {
-        title: "Server Management ",
-        description: "(Linux, Nginx, Load Balancing)",
+        title: "Technical Expertise",
+        description:
+          "Applies strong skills with precision, delivering consistently high-quality and impressive results.",
       },
       {
-        title: "Performance Tuning",
-        description: "(Caching, Compression, Lighthouse 90+ Scores)",
+        title: "Dedication & Integrity",
+        description:
+          "Works with full commitment and honesty, ensuring trust and reliability in every task.",
       },
     ],
   },
   {
-    title: "Security & Optimization",
+    title: "Huzaif Wani",
     description:
-      "Slow or hacked apps destroy trust. I harden security (XSS/SQLI protection, OAuth) and optimize bottlenecks so your app stays fast, safe, and scalable as you grow.",
+      "His deep understanding of our requirements and keen attention to detail resulted in a website that not only met but far exceeded our expectations. His expertise in frontend is truly impressive—delivering seamless, high-performance solutions with clean, scalable code. He is a rare talent who combines technical brilliance with strong communication and problem-solving skills.",
     items: [
       {
-        title: "Code Audits",
-        description: "(Refactoring, Tech Debt Cleanup)",
+        title: "Detail-Oriented Execution",
+        description:
+          "Translates requirements into high-performance results with precision and thoughtful implementation.",
       },
       {
-        title: "Pen Testing",
-        description: "(Vulnerability Assessments)",
+        title: "Client-Centric Approach",
+        description:
+          "Goes beyond expectations by deeply understanding needs and delivering tailored, effective outcomes.",
       },
       {
-        title: "SEO Tech Stack",
-        description: "(SSR, Metadata, Structured Data)",
+        title: "Technical & Communication Skills",
+        description:
+          "Blends technical brilliance with strong communication and problem-solving abilities.",
       },
     ],
   },
   {
     title: "Web & Mobile Apps",
     description:
-      "A clunky interface can sink even the best ideas. I craft responsive, pixel perfect web and mobile apps (React Native/Flutter) that users love—bridging design and functionality seamlessly.",
+      "Adrian’s expertise in web development is truly impressive. He delivered a robust and scalable solution for our e-commerce site, and our online sales have significantly increased since the launch. He’s a true professional!",
     items: [
       {
-        title: "Cross-Platform Apps",
-        description: "(Single codebase for iOS/Android/Web)",
+        title: "E-Commerce Development",
+        description:
+          "Built robust, scalable solutions that directly contributed to increased online sales.",
       },
       {
-        title: "PWAs",
-        description: "(Offline mode, Push Notifications)",
+        title: "Web Development Expertise",
+        description:
+          "Delivered professional-grade systems with a strong focus on performance and reliability.",
       },
       {
-        title: "E-Commerce",
-        description: "(Checkout flows, Payment Gateways, Inventory APIs)",
+        title: "Professional Delivery",
+        description:
+          "A true professional who ensures quality and client satisfaction at every step.",
       },
     ],
   },
