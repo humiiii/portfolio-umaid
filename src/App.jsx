@@ -7,6 +7,7 @@ import ReactLenis from "lenis/react";
 import About from "./sections/About";
 import Works from "./sections/Works";
 import Banner from "./sections/Banner";
+import Contact from "./sections/Contact";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
       <About />
       <Works />
       <Banner />
+      <Contact />
     </ReactLenis>
   );
 };
