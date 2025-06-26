@@ -1,3 +1,4 @@
+// Hero.jsx
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, Float, Lightformer } from "@react-three/drei";
@@ -5,7 +6,7 @@ import { Planet } from "../components/Planet";
 import { useMediaQuery } from "react-responsive";
 import AnimatedHeader from "../components/AnimatedHeader";
 
-const Hero = () => {
+const Hero = ({ start }) => {
   const isMobile = useMediaQuery({ maxWidth: 853 });
   const aboutTextBreak = useMediaQuery({ maxWidth: 767 });
 
@@ -23,11 +24,13 @@ const Hero = () => {
   return (
     <section id="home" className="flex min-h-screen flex-col justify-end">
       <AnimatedHeader
-        title={"m. umaid"}
-        subTitle={"500 Creativity Overflow"}
+        title="m. umaid"
+        subTitle="500 Creativity Overflow"
         text={aboutText}
-        textColor={"text-black"}
+        textColor="text-black"
+        start={start}
       />
+
       <figure
         className="absolute inset-0 -z-50"
         style={{ width: "100vw", height: "100vh" }}
@@ -38,30 +41,30 @@ const Hero = () => {
         >
           <ambientLight intensity={0.5} />
           <Float speed={0.5}>
-            <Planet scale={isMobile ? 0.7 : 1} />
+            <Planet scale={isMobile ? 0.7 : 1} start={start} />
           </Float>
           <Environment resolution={256}>
             <group rotation={[-Math.PI / 3, 4, 1]}>
               <Lightformer
-                form={"circle"}
+                form="circle"
                 intensity={2}
                 position={[0, 5, -9]}
                 scale={10}
               />
               <Lightformer
-                form={"circle"}
+                form="circle"
                 intensity={2}
                 position={[0, 3, 1]}
                 scale={10}
               />
               <Lightformer
-                form={"circle"}
+                form="circle"
                 intensity={2}
                 position={[-5, -1, -1]}
                 scale={10}
               />
               <Lightformer
-                form={"circle"}
+                form="circle"
                 intensity={2}
                 position={[10, 1, 0]}
                 scale={16}

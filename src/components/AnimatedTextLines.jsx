@@ -1,18 +1,32 @@
+import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import React, { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AnimatedTextLines = ({ text, className }) => {
+const AnimatedTextLines = ({ text, className, start = false }) => {
   const lines = text.split("\n").filter((line) => line.trim() !== "");
-
   const containerRef = useRef(null);
   const linesRef = useRef([]);
 
-  useGSAP(() => {
-    if (linesRef.current.length > 0) {
+  useGSAP(
+    () => {
+      if (linesRef.current.length === 0) return;
+
+      // If `start` is true, animate immediately once
+      if (start) {
+        gsap.from(linesRef.current, {
+          y: 100,
+          opacity: 0,
+          duration: 1,
+          ease: "back.out",
+          stagger: 0.3,
+        });
+        return;
+      }
+
+      // Otherwise animate on scroll into view
       gsap.from(linesRef.current, {
         y: 100,
         opacity: 0,
@@ -20,19 +34,23 @@ const AnimatedTextLines = ({ text, className }) => {
         ease: "back.out",
         stagger: 0.3,
         scrollTrigger: {
-          trigger: linesRef.current,
+          trigger: containerRef.current,
+          start: "top 80%",
+          once: true,
         },
       });
-    }
-  });
+    },
+    // re-run when `start` changes
+    [start],
+  );
 
   return (
     <div ref={containerRef} className={className}>
-      {lines.map((line, index) => (
+      {lines.map((line, idx) => (
         <span
-          key={index}
-          ref={(el) => (linesRef.current[index] = el)}
-          className="block leading-relaxed tracking-wide text-pretty"
+          key={idx}
+          ref={(el) => (linesRef.current[idx] = el)}
+          className="block leading-relaxed tracking-wide"
         >
           {line}
         </span>

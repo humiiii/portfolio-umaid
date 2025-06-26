@@ -7,13 +7,15 @@ import { useGLTF } from "@react-three/drei";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-export function Planet(props) {
+export function Planet({ start, ...props }) {
   const shapeContainer = useRef(null);
   const shperesContainer = useRef(null);
   const ringContainer = useRef(null);
   const { nodes, materials } = useGLTF("/portfolio-umaid/models/Planet.glb");
 
   useGSAP(() => {
+    if (!start) return;
+
     const tl = gsap.timeline();
     tl.from(shapeContainer.current.position, {
       y: 5,
@@ -42,7 +44,7 @@ export function Planet(props) {
       },
       "<",
     );
-  }, []);
+  }, [start]);
 
   return (
     <group ref={shapeContainer} {...props} dispose={null}>
