@@ -6,11 +6,19 @@ import { useMediaQuery } from "react-responsive";
 import AnimatedHeader from "../components/AnimatedHeader";
 
 const Hero = () => {
-  const aboutText = `Not an expert yet — just someone 
-who cares deeply about crafting 
-clean, meaningful web apps.`;
-
   const isMobile = useMediaQuery({ maxWidth: 853 });
+  const aboutTextBreak = useMediaQuery({ maxWidth: 767 });
+
+  const aboutText = aboutTextBreak
+    ? `But perhaps you hate a thing and it is 
+    good, and you love a thing that is 
+    bad for you. And Allāh knows, 
+    while you know not.
+    { QUR'AN 2:216 }`
+    : `But perhaps you hate a thing and it is good, 
+    and you love a thing that is bad for you. 
+    And Allāh knows, while you know not.
+    { QUR'AN 2:216 }`;
 
   return (
     <section id="home" className="flex min-h-screen flex-col justify-end">

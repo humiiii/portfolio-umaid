@@ -51,7 +51,7 @@ const AnimatedHeader = ({
           </p>
           <div className="px-10">
             <h1
-              className={`banner-text-responsive flex flex-col flex-wrap gap-12 ${textColor} uppercase sm:gap-16 md:block`}
+              className={`banner-text-responsive flex flex-col flex-wrap gap-12 ${textColor} pb-1 uppercase sm:gap-16 sm:pb-0 md:block`}
             >
               {title}
             </h1>

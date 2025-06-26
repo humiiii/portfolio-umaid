@@ -3,10 +3,22 @@ import gsap from "gsap";
 import AnimatedHeader from "../components/AnimatedHeader";
 import { socials } from "../constants";
 import Marquee from "../components/Marquee";
+import { useMediaQuery } from "react-responsive";
 
 const Contact = () => {
-  const text = `Got a question, how or project Idea?
-    WE’D love to hear from you and discus further!`;
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+
+  const text = isMobile
+    ? `I am truly near. I respond to one’s
+  prayer when they call upon Me.
+  So speak, He hears even the
+  whispers of your heart.
+  { Qur’an 2:186 }`
+    : `I am truly near. I respond to one’s prayer when they 
+  call upon Me. So speak, He hears even the 
+  whispers of your heart 
+  { Qur’an 2:186 }`;
+
   const items = [
     "just imagin, I code",
     "just imagin, I code",

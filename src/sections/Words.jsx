@@ -6,8 +6,13 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 const Words = () => {
-  const aboutText = `Let yourself be silently drawn by the 
+  const isMobile = useMediaQuery({ maxWidth: "767px" });
+  const aboutText = isMobile
+    ? `Let yourself be silently drawn by the 
   strange pull of what you really love
+{ Rumi }`
+    : `Let yourself be silently drawn by the strange 
+    pull of what you really love
 { Rumi }`;
 
   const worksRef = useRef([]);

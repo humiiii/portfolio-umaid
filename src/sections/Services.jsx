@@ -38,13 +38,13 @@ const Services = () => {
   });
 
   return (
-    <section className="contact-text-responsive mt-20 mb-42 overflow-hidden text-center leading-snug font-light capitalize">
-      <div id="title_service_1" className="">
+    <section className="contact-text-responsive mt-20 mb-42 overflow-hidden text-center leading-snug font-light">
+      <div id="title_service_1" className="capitalize">
         <p>architecture</p>
       </div>
       <div
         id="title_service_2"
-        className="flex translate-x-16 items-center justify-center gap-4"
+        className="flex translate-x-16 items-center justify-center gap-4 capitalize"
       >
         <p className="font-normal">development</p>
         <div className="bg-gold h-1 w-10 md:w-32" />
@@ -54,14 +54,15 @@ const Services = () => {
         id="title_service_3"
         className="flex -translate-x-48 items-center justify-center gap-4"
       >
-        <p>apis</p>
+        <p className="uppercase">api</p>
+        <span>s</span>
         <div className="bg-gold h-1 w-10 md:w-32" />
-        <p>frontends</p>
+        <p className="font-normal capitalize">frontends</p>
         <div className="bg-gold h-1 w-10 md:w-32" />
-        <p>scalability</p>
+        <p className="capitalize">scalability</p>
       </div>
       <div id="title_service_4" className="translate-x-48">
-        <p>databases</p>
+        <p className="capitalize">databases</p>
       </div>
     </section>
   );
