@@ -55,19 +55,26 @@ const Contact = () => {
         <div className="mb-10 flex px-10 text-[26px] leading-none font-light text-white uppercase lg:text-[32px]">
           <div className="flex w-full flex-col gap-10">
             <div className="social-link">
-              <h2>E-mail</h2>
+              <h2>Whisper</h2>
               <div className="my-2 h-px w-full bg-white/30" />
-              <p className="text-xl tracking-wider lowercase md:text-2xl lg:text-3xl">
-                JohnDoe@gmail.com
+              <p className="text-xl lowercase md:text-2xl lg:text-3xl">
+                or Just Say hello!
               </p>
             </div>
             <div className="social-link">
+              <h2>E-mail</h2>
+              <div className="my-2 h-px w-full bg-white/30" />
+              <p className="text-xl tracking-wider lowercase md:text-2xl lg:text-3xl">
+                muhammadumaid6@gmail.com
+              </p>
+            </div>
+            {/* <div className="social-link">
               <h2>Phone</h2>
               <div className="my-2 h-px w-full bg-white/30" />
               <p className="text-xl lowercase md:text-2xl lg:text-3xl">
                 +33 7 12 12 32 12
               </p>
-            </div>
+            </div> */}
             <div className="social-link">
               <h2>Social Media</h2>
               <div className="my-2 h-px w-full bg-white/30" />

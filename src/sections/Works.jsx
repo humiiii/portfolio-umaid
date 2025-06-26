@@ -153,7 +153,7 @@ const Works = () => {
               <img
                 src={project.bgImage}
                 alt={`${project.name}-bg-image`}
-                className="h-full w-full rounded-md object-cover brightness-50"
+                className="h-full w-full rounded-md object-cover brightness-[30%]"
               />
               <img
                 src={project.image}

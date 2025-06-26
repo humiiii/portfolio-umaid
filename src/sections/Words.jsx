@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import AnimatedHeader from "../components/AnimatedHeader";
-import { worksData } from "../constants";
+import { wordsData } from "../constants";
 import { useMediaQuery } from "react-responsive";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -15,12 +15,12 @@ const Words = () => {
     pull of what you really love
 { Rumi }`;
 
-  const worksRef = useRef([]);
+  const wordsRef = useRef([]);
 
   const isDesktop = useMediaQuery({ minWidth: "48rem" }); //768px
 
   useGSAP(() => {
-    worksRef.current.forEach((el, i) => {
+    wordsRef.current.forEach((el, i) => {
       if (!el) return;
 
       gsap.from(el, {
@@ -36,7 +36,7 @@ const Words = () => {
   }, []);
 
   return (
-    <section id="words" className="min-h-screen rounded-t-4xl bg-black">
+    <section id="words" className="min-h-screen rounded-t-4xl bg-black pb-8">
       <AnimatedHeader
         title={"Words"}
         subTitle={"Behind the scene, Beyond the screen"}
@@ -44,36 +44,36 @@ const Words = () => {
         textColor={"text-white"}
         withScrollTrigger={true}
       />
-      {worksData.map((work, index) => (
+      {wordsData.map((word, index) => (
         <div
-          ref={(el) => (worksRef.current[index] = el)}
+          ref={(el) => (wordsRef.current[index] = el)}
           key={index}
-          className="sticky border-t-2 border-white/30 bg-black px-10 pt-6 pb-12 text-white"
+          className="sticky border-t-2 border-white/30 bg-black px-12 pt-6 text-white"
           style={
             isDesktop
               ? {
                   top: `calc(10vh + ${index * 5}em)`,
-                  marginBottom: `${(worksData.length - index - 1) * 5}rem`,
+                  marginBottom: `${(wordsData.length - index - 1) * 5}rem`,
                 }
               : { top: 0 }
           }
         >
           <div className="flex items-center justify-center gap-4 font-light">
-            <div className="flex flex-col gap-6">
-              <h2 className="text-4xl lg:text-5xl">{work.title}</h2>
+            <div className="flex flex-col gap-8">
+              <h2 className="text-4xl lg:text-5xl">{word.title}</h2>
               <p className="text-xl leading-relaxed tracking-widest text-pretty text-white/60 lg:text-2xl">
-                {work.description}
+                {word.description}
               </p>
               <div className="flex flex-col gap-2 text-2xl text-white/80 sm:gap-4 lg:text-3xl">
-                {work.items.map((workItem, itemIndex) => (
+                {word.items.map((wordItem, itemIndex) => (
                   <div key={`item-${index}-${itemIndex}`}>
                     <h3 className="flex">
                       <span className="mr-12 text-lg text-white/30">
                         0{itemIndex + 1}
                       </span>
-                      {workItem.title}
+                      {wordItem.title}
                     </h3>
-                    {itemIndex < work.items.length - 1 && (
+                    {itemIndex < word.items.length - 1 && (
                       <div className="my-4 h-px w-full bg-white/30" />
                     )}
                   </div>

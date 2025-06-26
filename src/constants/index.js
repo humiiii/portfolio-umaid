@@ -1,5 +1,21 @@
 // index.js
-export const worksData = [
+export const wordsData = [
+  {
+    title: "Injila Hamid",
+    description:
+      "Umaid is a thoughtful, reliable, and dedicated individual who consistently brings clarity and efficiency to any task he undertakes. He is highly organized, communicates with sincerity, and approaches challenges with a calm and solution-oriented mindset. His positive attitude, integrity, and respectful nature make him an absolute pleasure to work with, and his contributions are always of high quality.",
+    items: [
+      {
+        title: "Reliable & Dedicated",
+      },
+      {
+        title: "Organized & Calm",
+      },
+      {
+        title: "High-Quality Work",
+      },
+    ],
+  },
   {
     title: "Saira Bano",
     description:
@@ -7,18 +23,12 @@ export const worksData = [
     items: [
       {
         title: "Attention to Detail",
-        description:
-          "Consistently delivers polished, error-free work with a meticulous eye for refinement and precision.",
       },
       {
         title: "Smart & Analytical Thinking",
-        description:
-          "Solves complex problems efficiently with structured logic and a sharp, data-driven mindset.",
       },
       {
         title: "Striving for Perfection",
-        description:
-          "Pursues excellence in every project—going beyond requirements to create outstanding solutions.",
       },
     ],
   },
@@ -29,18 +39,12 @@ export const worksData = [
     items: [
       {
         title: "Creative Excellence",
-        description:
-          "Brings originality and innovation into every project with standout ideas and execution.",
       },
       {
         title: "Technical Expertise",
-        description:
-          "Applies strong skills with precision, delivering consistently high-quality and impressive results.",
       },
       {
         title: "Dedication & Integrity",
-        description:
-          "Works with full commitment and honesty, ensuring trust and reliability in every task.",
       },
     ],
   },
@@ -51,40 +55,12 @@ export const worksData = [
     items: [
       {
         title: "Detail-Oriented Execution",
-        description:
-          "Translates requirements into high-performance results with precision and thoughtful implementation.",
       },
       {
         title: "Client-Centric Approach",
-        description:
-          "Goes beyond expectations by deeply understanding needs and delivering tailored, effective outcomes.",
       },
       {
         title: "Technical & Communication Skills",
-        description:
-          "Blends technical brilliance with strong communication and problem-solving abilities.",
-      },
-    ],
-  },
-  {
-    title: "Huzaif Wani",
-    description:
-      "His deep understanding of our requirements and keen attention to detail resulted in a website that not only met but far exceeded our expectations. His expertise in frontend is truly impressive—delivering seamless, high-performance solutions with clean, scalable code. He is a rare talent who combines technical brilliance with strong communication and problem-solving skills.",
-    items: [
-      {
-        title: "Detail-Oriented Execution",
-        description:
-          "Translates requirements into high-performance results with precision and thoughtful implementation.",
-      },
-      {
-        title: "Client-Centric Approach",
-        description:
-          "Goes beyond expectations by deeply understanding needs and delivering tailored, effective outcomes.",
-      },
-      {
-        title: "Technical & Communication Skills",
-        description:
-          "Blends technical brilliance with strong communication and problem-solving abilities.",
       },
     ],
   },
@@ -92,93 +68,73 @@ export const worksData = [
 export const projects = [
   {
     id: 1,
-    name: "Mobile Accessories E-commerce",
-    description:
-      "An online store specializing in phone accessories including cases, chargers, cables, and power banks with MagSafe compatibility.",
+    name: "Intern at Ai4Bharat",
+    description: "",
     href: "",
-    image: "/portfolio-umaid/assets/projects/mobile-accessories-store.jpg",
+    image: "/portfolio-umaid/assets/projects/ai4bharat.png",
     bgImage: "/portfolio-umaid/assets/backgrounds/blanket.jpg",
     frameworks: [
       { id: 1, name: "React" },
       { id: 2, name: "Next.js" },
-      { id: 3, name: "Node.js" },
-      { id: 4, name: "MongoDB" },
-      { id: 5, name: "Tailwind CSS" },
+      { id: 3, name: "Redux" },
+      { id: 4, name: "Django" },
+      { id: 5, name: "MUI" },
     ],
   },
   {
     id: 2,
-    name: "Plant Shop E-commerce",
-    description:
-      "An online store specializing in rare and decorative plants with a clean, user-friendly interface.",
+    name: "ochi Website clone",
+    description: "",
     href: "",
-    image: "/portfolio-umaid/assets/projects/plant-shop.jpg",
+    image: "/portfolio-umaid/assets/projects/ochi.png",
     bgImage: "/portfolio-umaid/assets/backgrounds/curtains.jpg",
     frameworks: [
       { id: 1, name: "React" },
-      { id: 2, name: "Next.js" },
-      { id: 3, name: "Stripe API" },
-      { id: 4, name: "Tailwind CSS" },
+      { id: 2, name: "TailwindCss" },
+      { id: 3, name: "FramerMotion" },
+      { id: 4, name: "LocomotiveJs" },
     ],
   },
   {
     id: 3,
-    name: "Apple Tech Marketplace",
-    description:
-      "An e-commerce platform for Apple products and accessories with deals and category filtering.",
+    name: "Sundown Website clone",
+    description: "",
     href: "",
-    image: "/portfolio-umaid/assets/projects/apple-tech-store.jpg",
+    image: "/portfolio-umaid/assets/projects/sundown.png",
     bgImage: "/portfolio-umaid/assets/backgrounds/map.jpg",
     frameworks: [
-      { id: 1, name: "Blazor" },
-      { id: 2, name: "ASP.NET Core" },
-      { id: 3, name: "SQL Server" },
-      { id: 4, name: "Bootstrap" },
+      { id: 1, name: "HTML" },
+      { id: 2, name: "CSS" },
+      { id: 3, name: "GSAP" },
+      { id: 4, name: "LocomotiveJs" },
+      { id: 5, name: "SwiperJs" },
     ],
   },
   {
     id: 4,
-    name: "Electronics & Gadgets Store",
-    description:
-      "A multi-category online shop featuring electronics, home appliances, and gaming gear with special offers.",
+    name: "Zentry Website clone",
+    description: "",
     href: "",
-    image: "/portfolio-umaid/assets/projects/electronics-store.jpg",
+    image: "/portfolio-umaid/assets/projects/zentry.png",
     bgImage: "/portfolio-umaid/assets/backgrounds/poster.jpg",
     frameworks: [
-      { id: 1, name: "Vue.js" },
-      { id: 2, name: "Laravel" },
-      { id: 3, name: "MySQL" },
-      { id: 4, name: "SCSS" },
+      { id: 1, name: "React" },
+      { id: 2, name: "Tailwind" },
+      { id: 3, name: "GSAP" },
     ],
   },
   {
     id: 5,
-    name: "Home Decor Marketplace",
-    description:
-      "A curated collection of designer home decor items, including furniture and artisan vases.",
+    name: "Sidcup Family Golf Website clone",
+    description: "",
     href: "",
-    image: "/portfolio-umaid/assets/projects/home-decor-store.jpg",
+    image: "/portfolio-umaid/assets/projects/sidcup.png",
     bgImage: "/portfolio-umaid/assets/backgrounds/table.jpg",
     frameworks: [
-      { id: 1, name: "Angular" },
-      { id: 2, name: "Firebase" },
-      { id: 3, name: "GraphQL" },
-      { id: 4, name: "Material UI" },
-    ],
-  },
-  {
-    id: 6,
-    name: "Digital Game Store",
-    description:
-      "A gaming platform featuring discounted titles, top sellers, and genre-based browsing.",
-    href: "",
-    image: "/portfolio-umaid/assets/projects/game-store.jpg",
-    bgImage: "/portfolio-umaid/assets/backgrounds/curtains.jpg",
-    frameworks: [
-      { id: 1, name: "Svelte" },
-      { id: 2, name: "Node.js" },
-      { id: 3, name: "MongoDB" },
-      { id: 4, name: "Chakra UI" },
+      { id: 1, name: "HTML" },
+      { id: 2, name: "CSS" },
+      { id: 3, name: "JS" },
+      { id: 4, name: "GSAP" },
     ],
   },
 ];
