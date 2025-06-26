@@ -1,12 +1,71 @@
-# React + Vite
+# Portfolio of M Umaid Rather
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a modern, interactive portfolio website built with React and Vite. It showcases the work, skills, and projects of M Umaid Rather, with a focus on frontend development, UI/UX, and web animation.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Animated sections using GSAP and ScrollTrigger
+- Custom fonts and responsive design
+- Project gallery with images and tech stack
+- Testimonials/endorsements
+- Modern, clean UI with Tailwind CSS
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Core:**
+
+- React
+- Vite
+- Tailwind CSS
+- GSAP (GreenSock Animation Platform)
+
+**Additional Libraries:**
+
+- @gsap/react
+- @react-three/drei
+- @react-three/fiber
+- @tailwindcss/vite
+- lenis
+- maath
+- react-dom
+- react-icons
+- react-responsive
+- react-scroll
+- three
+
+**Dev Tools:**
+
+- ESLint
+- Prettier
+- gh-pages
+- @vitejs/plugin-react
+- @iconify/react
+
+## Project Structure
+
+- `src/sections/` — Main page sections (Hero, Navbar, Services, etc.)
+- `src/components/` — Reusable UI components
+- `src/constants/` — Data for works, projects, and socials
+- `public/assets/` — Images and backgrounds
+- `public/fonts/` — Custom font files (Amiamie family)
+
+## How to Run
+
+1. Clone the repository
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Start the development server:
+   ```sh
+   npm run dev
+   ```
+4. Open [http://localhost:5173](http://localhost:5173) in your browser
+
+## Credits
+
+- Inspired by and adapted from the work of [Ali Sanati](https://github.com/Ali-Sanati)
+
+---
+
+Feel free to explore, use, or adapt this portfolio for your own needs. If you like it, consider giving credit to the original inspiration!
