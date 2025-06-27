@@ -120,47 +120,53 @@ const Works = () => {
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={() => handleMouseLeave(index)}
           >
-            {/* overlay */}
-            <div
-              ref={(el) => {
-                overlayRefs.current[index] = el;
-              }}
-              className="clip-path absolute inset-0 -z-10 hidden bg-black duration-200 md:block"
-            />
+            <a
+              href={`${project.href}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {/* overlay */}
+              <div
+                ref={(el) => {
+                  overlayRefs.current[index] = el;
+                }}
+                className="clip-path absolute inset-0 -z-10 hidden bg-black duration-200 md:block"
+              />
 
-            {/* title */}
-            <div className="flex justify-between px-10 text-black transition-all duration-500 md:group-hover:px-12 md:group-hover:text-white">
-              <h2 className="text-[26px] leading-none lg:text-[32px]">
-                {project.name}
-              </h2>
-              <MdArrowOutward className="size-5 md:size-6" />
-            </div>
-            {/* divider */}
-            <div className="h-0.5 w-full bg-black/80" />
-            {/* framework */}
-            <div className="transtion-all flex gap-x-5 px-10 text-xs leading-loose uppercase duration-500 md:text-sm md:group-hover:px-12">
-              {project.frameworks.map((framework) => (
-                <p
-                  key={framework.id}
-                  className="text-black transition-colors duration-500 md:group-hover:text-white"
-                >
-                  {framework.name}
-                </p>
-              ))}
-            </div>
-            {/* mobile preview image */}
-            <div className="relative flex h-[400px] items-center justify-center px-10 md:hidden">
-              <img
-                src={project.bgImage}
-                alt={`${project.name}-bg-image`}
-                className="h-full w-full rounded-md object-cover brightness-[30%]"
-              />
-              <img
-                src={project.image}
-                alt={`${project.name}-image`}
-                className="absolute rounded-xl bg-center px-14"
-              />
-            </div>
+              {/* title */}
+              <div className="flex justify-between px-10 text-black transition-all duration-500 md:group-hover:px-12 md:group-hover:text-white">
+                <h2 className="text-[26px] leading-none lg:text-[32px]">
+                  {project.name}
+                </h2>
+                <MdArrowOutward className="size-5 md:size-6" />
+              </div>
+              {/* divider */}
+              <div className="h-0.5 w-full bg-black/80" />
+              {/* framework */}
+              <div className="transtion-all flex gap-x-5 px-10 text-xs leading-loose uppercase duration-500 md:text-sm md:group-hover:px-12">
+                {project.frameworks.map((framework) => (
+                  <p
+                    key={framework.id}
+                    className="text-black transition-colors duration-500 md:group-hover:text-white"
+                  >
+                    {framework.name}
+                  </p>
+                ))}
+              </div>
+              {/* mobile preview image */}
+              <div className="relative flex h-[400px] items-center justify-center px-10 md:hidden">
+                <img
+                  src={project.bgImage}
+                  alt={`${project.name}-bg-image`}
+                  className="h-full w-full rounded-md object-cover brightness-[30%]"
+                />
+                <img
+                  src={project.image}
+                  alt={`${project.name}-image`}
+                  className="absolute rounded-xl bg-center px-14"
+                />
+              </div>
+            </a>
           </div>
         ))}
         {/* desktop Flaoting preview image */}

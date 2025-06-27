@@ -70,7 +70,7 @@ export const projects = [
     id: 1,
     name: "Intern at Ai4Bharat",
     description: "",
-    href: "",
+    href: "https://ai4bharat.iitm.ac.in/",
     image: "/portfolio-umaid/assets/projects/ai4bharat.png",
     bgImage: "/portfolio-umaid/assets/backgrounds/blanket.jpg",
     frameworks: [
