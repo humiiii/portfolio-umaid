@@ -83,9 +83,36 @@ export const projects = [
   },
   {
     id: 2,
+    name: "Sidcup Family Golf Website clone",
+    description: "",
+    href: "https://humiiii.github.io/sidcup-golf/",
+    image: "/portfolio-umaid/assets/projects/sidcup.png",
+    bgImage: "/portfolio-umaid/assets/backgrounds/table.jpg",
+    frameworks: [
+      { id: 1, name: "HTML" },
+      { id: 2, name: "CSS" },
+      { id: 3, name: "JS" },
+      { id: 4, name: "GSAP" },
+    ],
+  },
+  {
+    id: 3,
+    name: "Zentry Website clone",
+    description: "",
+    href: "https://humiiii.github.io/zentry/",
+    image: "/portfolio-umaid/assets/projects/zentry.png",
+    bgImage: "/portfolio-umaid/assets/backgrounds/poster.jpg",
+    frameworks: [
+      { id: 1, name: "React" },
+      { id: 2, name: "Tailwind" },
+      { id: 3, name: "GSAP" },
+    ],
+  },
+  {
+    id: 4,
     name: "ochi Website clone",
     description: "",
-    href: "",
+    href: "https://humiiii.github.io/ochi/",
     image: "/portfolio-umaid/assets/projects/ochi.png",
     bgImage: "/portfolio-umaid/assets/backgrounds/curtains.jpg",
     frameworks: [
@@ -96,10 +123,10 @@ export const projects = [
     ],
   },
   {
-    id: 3,
+    id: 5,
     name: "Sundown Website clone",
     description: "",
-    href: "",
+    href: "https://humiiii.github.io/sundown-studio/",
     image: "/portfolio-umaid/assets/projects/sundown.png",
     bgImage: "/portfolio-umaid/assets/backgrounds/map.jpg",
     frameworks: [
@@ -110,34 +137,8 @@ export const projects = [
       { id: 5, name: "SwiperJs" },
     ],
   },
-  {
-    id: 4,
-    name: "Zentry Website clone",
-    description: "",
-    href: "",
-    image: "/portfolio-umaid/assets/projects/zentry.png",
-    bgImage: "/portfolio-umaid/assets/backgrounds/poster.jpg",
-    frameworks: [
-      { id: 1, name: "React" },
-      { id: 2, name: "Tailwind" },
-      { id: 3, name: "GSAP" },
-    ],
-  },
-  {
-    id: 5,
-    name: "Sidcup Family Golf Website clone",
-    description: "",
-    href: "",
-    image: "/portfolio-umaid/assets/projects/sidcup.png",
-    bgImage: "/portfolio-umaid/assets/backgrounds/table.jpg",
-    frameworks: [
-      { id: 1, name: "HTML" },
-      { id: 2, name: "CSS" },
-      { id: 3, name: "JS" },
-      { id: 4, name: "GSAP" },
-    ],
-  },
 ];
+
 export const socials = [
   { name: "Instagram", href: "https://www.instagram.com/umaid_rather/" },
   { name: "LinkedIn", href: "www.linkedin.com/in/m-umaid-r" },

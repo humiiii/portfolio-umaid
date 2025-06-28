@@ -141,6 +141,8 @@ const Navbar = () => {
                 <a
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm leading-loose tracking-wider uppercase transition-colors duration-300 hover:text-white"
                 >
                   {`{ ${social.name} }`}
