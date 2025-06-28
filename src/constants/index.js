@@ -83,6 +83,20 @@ export const projects = [
   },
   {
     id: 2,
+    name: "Cote Royale Fragrance Website",
+    description: "",
+    href: "https://humiiii.github.io/cote-royale/",
+    image: "/portfolio-umaid/assets/projects/cote-royale.png",
+    bgImage: "/portfolio-umaid/assets/backgrounds/poster.jpg",
+    frameworks: [
+      { id: 1, name: "React" },
+      { id: 2, name: "Tailwind" },
+      { id: 3, name: "ReactRouter" },
+      { id: 4, name: "GSAP" },
+    ],
+  },
+  {
+    id: 3,
     name: "Sidcup Family Golf Website clone",
     description: "",
     href: "https://humiiii.github.io/sidcup-golf/",
@@ -96,7 +110,7 @@ export const projects = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     name: "Zentry Website clone",
     description: "",
     href: "https://humiiii.github.io/zentry/",
@@ -109,7 +123,7 @@ export const projects = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     name: "ochi Website clone",
     description: "",
     href: "https://humiiii.github.io/ochi/",
@@ -123,7 +137,7 @@ export const projects = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     name: "Sundown Website clone",
     description: "",
     href: "https://humiiii.github.io/sundown-studio/",
