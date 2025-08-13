@@ -67,7 +67,7 @@ const AnimatedHeader = ({
           className="flex flex-col justify-center gap-12 pt-16 sm:gap-16"
         >
           <p
-            className={`px-10 text-sm font-light tracking-[0.2rem] ${textColor} uppercase sm:tracking-[0.5rem]`}
+            className={`px-10 text-xs font-light tracking-wide ${textColor} uppercase sm:text-base`}
           >
             {subTitle}
           </p>

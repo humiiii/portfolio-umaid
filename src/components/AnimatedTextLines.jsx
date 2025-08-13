@@ -50,7 +50,7 @@ const AnimatedTextLines = ({ text, className, start = false }) => {
         <span
           key={idx}
           ref={(el) => (linesRef.current[idx] = el)}
-          className="block leading-relaxed tracking-wide"
+          className="block text-xs leading-relaxed tracking-wide sm:text-base md:text-xl"
         >
           {line}
         </span>

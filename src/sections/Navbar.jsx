@@ -1,176 +1,278 @@
-import React, { useEffect, useRef, useState } from "react";
-
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { Link } from "react-scroll";
-
+import React, { useRef, useEffect, useState } from "react";
 import { socials } from "../constants";
+import gsap from "gsap";
+import { CustomEase, SplitText } from "gsap/all";
+import Lenis from "lenis";
 
 const Navbar = () => {
-  const navRef = useRef(null);
-  const linksRef = useRef([]);
-  const contactRef = useRef(null);
-  const topLineRef = useRef(null);
-  const bottomLineRef = useRef(null);
+  // Refs for DOM elements
+  const menuToggleBtnRef = useRef(null);
+  const menuOverlayRef = useRef(null);
+  const menuOverlayContentRef = useRef(null);
+  const menuMediaWrapperRef = useRef(null);
+  const menuToggleLabelRef = useRef(null);
+  const hamburgerIconRef = useRef(null);
+  const menuColRefs = useRef([]);
 
-  const tl = useRef(null);
-  const iconTl = useRef(null);
-
-  const [isOpen, setIsOpen] = useState(false);
+  // State
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [showBurger, setShowBurger] = useState(true);
 
-  useGSAP(() => {
-    gsap.set(navRef.current, { xPercent: 100 });
-    gsap.set([linksRef.current, contactRef.current], {
-      autoAlpha: 0,
-      x: -20,
+  // Store split text instances
+  const splitTextByContainerRef = useRef([]);
+  const lenisRef = useRef(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(CustomEase, SplitText);
+    CustomEase.create("hop", ".87,.0,.13,1");
+
+    // ✅ Set initial hidden state so menu doesn't flash on reload
+    gsap.set(menuOverlayRef.current, {
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
     });
+    gsap.set(menuOverlayContentRef.current, { yPercent: -50 });
+    gsap.set(menuMediaWrapperRef.current, { opacity: 0 });
 
-    tl.current = gsap
-      .timeline({ paused: true })
-      .to(navRef.current, {
-        xPercent: 0,
-        duration: 1,
-        ease: "power3.out",
-      })
-      .to(
-        linksRef.current,
-        {
-          autoAlpha: 1,
-          x: 0,
-          stagger: 0.1,
-          duration: 0.5,
-          ease: "power2.out",
-        },
-        "<",
-      )
-      .to(
-        contactRef.current,
-        {
-          autoAlpha: 1,
-          x: 0,
-          duration: 0.5,
-          ease: "power2.out",
-        },
-        "<+0.2",
-      );
+    // Lenis smooth scroll
+    const lenis = new Lenis();
+    lenisRef.current = lenis;
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
 
-    iconTl.current = gsap
-      .timeline({ paused: true })
-      .to(topLineRef.current, {
-        rotate: 45,
-        y: 3.3,
-        duration: 0.3,
-        ease: "power2.inOut",
-      })
-      .to(
-        bottomLineRef.current,
-        {
-          rotate: -45,
-          y: -3.3,
-          duration: 0.3,
-          ease: "power2.inOut",
-        },
-        "<",
-      );
+    // SplitText for menu items
+    const initializeSplitText = () => {
+      splitTextByContainerRef.current = [];
+      menuColRefs.current.forEach((container) => {
+        if (!container) return;
+        const textElements = container.querySelectorAll("a, p");
+        let containerSplits = [];
+        textElements.forEach((element) => {
+          const split = SplitText.create(element, {
+            type: "lines",
+            mask: "lines",
+            linesClass: "line",
+          });
+          containerSplits.push(split);
+          gsap.set(split.lines, { y: "-110%" });
+        });
+        splitTextByContainerRef.current.push(containerSplits);
+      });
+    };
+    const timeoutId = setTimeout(initializeSplitText, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      lenis.destroy();
+      splitTextByContainerRef.current.forEach((containerSplits) => {
+        containerSplits.forEach((split) => split.revert());
+      });
+    };
   }, []);
 
+  // ✅ Scroll behavior — hide burger on scroll down, show on scroll up
   useEffect(() => {
     let lastScrollY = window.scrollY;
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
       setShowBurger(currentScrollY <= lastScrollY || currentScrollY < 10);
-
       lastScrollY = currentScrollY;
     };
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    if (isOpen) {
-      tl.current.reverse();
-      iconTl.current.reverse();
+  const handleMenuToggle = () => {
+    if (isAnimating) return;
+
+    if (!isMenuOpen) {
+      setIsAnimating(true);
+      lenisRef.current.stop();
+
+      const tl = gsap.timeline();
+      tl.to(menuToggleLabelRef.current, {
+        y: "-110%",
+        duration: 1,
+        ease: "hop",
+      })
+        .to(
+          menuOverlayRef.current,
+          {
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+            duration: 1,
+            ease: "hop",
+          },
+          "<",
+        )
+        .to(
+          menuOverlayContentRef.current,
+          {
+            yPercent: 0,
+            duration: 1,
+            ease: "hop",
+          },
+          "<",
+        )
+        .to(
+          menuMediaWrapperRef.current,
+          {
+            opacity: 1,
+            duration: 0.75,
+            ease: "power2.out",
+            delay: 0.5,
+          },
+          "<",
+        );
+
+      splitTextByContainerRef.current.forEach((containerSplits) => {
+        const copyLines = containerSplits.flatMap((split) => split.lines);
+        tl.to(
+          copyLines,
+          {
+            y: "0%",
+            duration: 2,
+            ease: "hop",
+            stagger: -0.075,
+          },
+          -0.15,
+        );
+      });
+
+      hamburgerIconRef.current.classList.add("active");
+
+      tl.call(() => {
+        setIsAnimating(false);
+      });
+
+      setIsMenuOpen(true);
     } else {
-      tl.current.play();
-      iconTl.current.play();
+      setIsAnimating(true);
+      hamburgerIconRef.current.classList.remove("active");
+
+      const tl = gsap.timeline();
+      tl.to(menuOverlayRef.current, {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+        duration: 1,
+        ease: "hop",
+      })
+        .to(
+          menuOverlayContentRef.current,
+          {
+            yPercent: -50,
+            duration: 1,
+            ease: "hop",
+          },
+          "<",
+        )
+        .to(
+          menuToggleLabelRef.current,
+          {
+            y: "0%",
+            duration: 1,
+            ease: "hop",
+          },
+          "<",
+        )
+        .to(
+          menuColRefs.current,
+          {
+            opacity: 0.25,
+            duration: 1,
+            ease: "hop",
+          },
+          "<",
+        );
+
+      tl.call(() => {
+        splitTextByContainerRef.current.forEach((containerSplits) => {
+          const copyLines = containerSplits.flatMap((split) => split.lines);
+          gsap.set(copyLines, { y: "-110%" });
+        });
+        gsap.set(menuColRefs.current, { opacity: 1 });
+        gsap.set(menuMediaWrapperRef.current, { opacity: 0 });
+        setIsAnimating(false);
+        lenisRef.current.start();
+      });
+
+      setIsMenuOpen(false);
     }
-    setIsOpen(!isOpen);
   };
+
   return (
-    <>
-      <nav
-        ref={navRef}
-        className="fixed z-50 flex h-full w-full flex-col justify-between gap-y-10 bg-black px-10 py-28 text-white/80 uppercase md:left-1/2 md:w-1/2"
-      >
-        <div className="flex flex-col gap-y-2 text-5xl lg:text-8xl">
-          {["home", "words", "about", "work", "contact"].map(
-            (section, index) => (
-              <div key={index} ref={(el) => (linksRef.current[index] = el)}>
-                <Link
-                  onClick={toggleMenu}
-                  className="cursor-pointer transition-all duration-300 hover:text-white"
-                  to={`${section}`}
-                  smooth
-                  offset={0}
-                  duration={2000}
-                >
-                  {section}
-                </Link>
-              </div>
-            ),
-          )}
-        </div>
+    <nav className="navbar">
+      <div className="menu-bar">
         <div
-          ref={contactRef}
-          className="flex flex-col flex-wrap justify-between gap-8 md:flex-row"
+          className="menu-toggle-btn ml-auto"
+          ref={menuToggleBtnRef}
+          onClick={handleMenuToggle}
+          style={{
+            clipPath: showBurger ? "inset(0 0 0 0)" : "inset(0 100% 0 0)",
+            transition: "clip-path 0.3s ease",
+          }}
         >
-          <div className="font-light">
-            <p className="tracking-wider text-white/50">E-mail</p>
-            <p className="tracking-wider text-pretty lowercase">
-              muhammadumaid6@gmail.com
-            </p>
+          <div className="menu-toggle-label">
+            <p ref={menuToggleLabelRef}>Menu</p>
           </div>
-          <div className="font-light">
-            <p className="tracking-wider text-white/50">Social Media</p>
-            <div className="flex flex-col flex-wrap gap-x-2 md:flex-row">
-              {socials.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm leading-loose tracking-wider uppercase transition-colors duration-300 hover:text-white"
-                >
-                  {`{ ${social.name} }`}
-                </a>
-              ))}
+          <div className="menu-hamburger-icon" ref={hamburgerIconRef}>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+      <div className="menu-overlay" ref={menuOverlayRef}>
+        <div className="menu-overlay-content" ref={menuOverlayContentRef}>
+          <div className="menu-media-wrapper" ref={menuMediaWrapperRef}>
+            <img src="/portfolio-umaid/images/me.jpg" alt="" />
+          </div>
+          <div className="menu-content-wrapper">
+            <div className="menu-content-main">
+              <div
+                className="menu-col"
+                ref={(el) => (menuColRefs.current[0] = el)}
+              >
+                {["home", "words", "about", "work", "contact"].map(
+                  (section, index) => (
+                    <div key={index} className="menu-link capitalize">
+                      <a onClick={handleMenuToggle} href={`#${section}`}>
+                        {section}
+                      </a>
+                    </div>
+                  ),
+                )}
+              </div>
+              <div
+                className="menu-col"
+                ref={(el) => (menuColRefs.current[1] = el)}
+              >
+                {socials.map((social, index) => (
+                  <div className="menu-tag" key={index}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {`{ ${social.name} }`}
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="menu-footer">
+              <div
+                className="menu-col"
+                ref={(el) => (menuColRefs.current[2] = el)}
+              >
+                <p>E-mail</p>
+                <p>muhammadumaid6@gmail.com</p>
+              </div>
             </div>
           </div>
         </div>
-      </nav>
-      <div
-        className="fixed top-4 right-10 z-50 flex h-14 w-14 cursor-pointer flex-col items-center justify-center gap-1 rounded-full bg-black transition-all duration-300 md:h-16 md:w-16"
-        onClick={toggleMenu}
-        style={
-          showBurger
-            ? { clipPath: "circle(50% at 50% 50%)" }
-            : { clipPath: "circle(0% at 50% 50%)" }
-        }
-      >
-        <span
-          ref={topLineRef}
-          className="block h-0.5 w-8 origin-center rounded-full bg-white"
-        ></span>
-        <span
-          ref={bottomLineRef}
-          className="block h-0.5 w-8 origin-center rounded-full bg-white"
-        ></span>
       </div>
-    </>
+    </nav>
   );
 };
 

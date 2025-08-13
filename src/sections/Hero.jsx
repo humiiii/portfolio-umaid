@@ -25,7 +25,7 @@ const Hero = ({ start }) => {
     <section id="home" className="flex min-h-screen flex-col justify-end">
       <AnimatedHeader
         title="m. umaid"
-        subTitle="500 Creativity Overflow"
+        subTitle="Allah is the best of planners. { QUR'AN 3:54 }"
         text={aboutText}
         textColor="text-black"
         start={start}

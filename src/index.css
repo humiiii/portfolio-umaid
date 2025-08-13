@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
 
 /* Amiamie Regular */
@@ -132,13 +133,20 @@
   font-style: italic;
   font-display: swap;
 }
+
 @theme {
   --color-primary: #e5e5e0;
   --color-DarkLava: #393632;
   --color-SageGray: #8b8b73;
   --color-gold: #cfa355;
+  --color-bg: #171717;
+  --color-fg: #fff;
+  --color-menu-bg: #0f0f0f;
+  --color-menu-fg-secondary: #5f5f5f;
+  --color-hamburger-icon-border: rgba(255, 255, 255, 0.1);
   --font-amiamie: "Amiamie", sans-serif;
   --font-amiamie-round: "Amiamie-Round", sans-serif;
+  --font-inter: "Inter", sans-serif;
 
   --animate-marquee: marquee 40s infinite linear;
   @keyframes marquee {
@@ -157,6 +165,219 @@ body {
   scroll-behavior: smooth;
   overflow-x: hidden;
   font-family: var(--font-amiamie);
+}
+
+.menu-media-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.menu-toggle-label p,
+.menu-col p {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.menu-col a {
+  text-decoration: none;
+  color: var(--color-fg);
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.menu-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: all;
+  color: var(--color-menu-fg-secondary);
+  z-index: 2;
+}
+
+.menu-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.menu-toggle-label {
+  overflow: hidden;
+}
+
+.menu-toggle-label p {
+  position: relative;
+  transform: translateY(0%);
+  will-change: transform;
+}
+
+.menu-hamburger-icon {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--color-hamburger-icon-border);
+  border-radius: 100%;
+  background-color: var(--color-menu-bg);
+}
+
+.menu-hamburger-icon span {
+  position: absolute;
+  width: 15px;
+  height: 1.25px;
+  background-color: var(--color-fg);
+  transition: all 0.75s cubic-bezier(0.87, 0, 0.13, 1);
+  transform-origin: center;
+  will-change: transform;
+}
+
+.menu-hamburger-icon span:nth-child(1) {
+  transform: translateY(-3px);
+}
+.menu-hamburger-icon span:nth-child(2) {
+  transform: translateY(3px);
+}
+.menu-hamburger-icon.active span:nth-child(1) {
+  transform: translateY(0) rotate(45deg) scaleX(1.05);
+}
+.menu-hamburger-icon.active span:nth-child(2) {
+  transform: translateY(0) rotate(-45deg) scaleX(1.05);
+}
+
+.menu-overlay,
+.menu-overlay-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  color: var(--color-fg);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.menu-overlay {
+  background-color: var(--color-menu-bg);
+  /* clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%); */
+  will-change: clip-path;
+}
+
+.menu-overlay-content {
+  display: flex;
+  will-change: transform;
+  pointer-events: all;
+  /* transform:translateY(-50%); */
+}
+
+.menu-media-wrapper {
+  flex: 2;
+  /* opacity:0; */
+  will-change: opacity;
+}
+
+.menu-media-wrapper img {
+  opacity: 0.25;
+}
+
+.menu-content-wrapper {
+  flex: 3;
+  position: relative;
+  display: flex;
+}
+
+.menu-content-main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.menu-footer {
+  margin: 0 auto;
+}
+
+.menu-content-main,
+.menu-footer {
+  width: 75%;
+  padding: 2rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.menu-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.manu-col:nth-child(1) {
+  flex: 3;
+}
+.manu-col:nth-child(2) {
+  flex: 2;
+}
+
+.menu-link a {
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.menu-tag a,
+.menu-footer p {
+  color: var(--color-menu-fg-secondary);
+}
+
+.line {
+  position: relative;
+  will-change: transform;
+}
+
+@media (max-width: 1000px) {
+  .menu-media-wrapper {
+    display: none;
+  }
+
+  .menu-content-main,
+  .menu-footer {
+    width: 100%;
+  }
+
+  .menu-content-main {
+    top: 50%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .menu-link a {
+    font-size: 3rem;
+  }
+
+  .menu-tag a {
+    font-size: 1.25rem;
+  }
 }
 
 @utility clip-path {
