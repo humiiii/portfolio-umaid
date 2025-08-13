@@ -3,6 +3,7 @@ import { socials } from "../constants";
 import gsap from "gsap";
 import { CustomEase, SplitText } from "gsap/all";
 import Lenis from "lenis";
+import { Link } from "react-scroll";
 
 const Navbar = () => {
   // Refs for DOM elements
@@ -236,9 +237,16 @@ const Navbar = () => {
                 {["home", "words", "about", "work", "contact"].map(
                   (section, index) => (
                     <div key={index} className="menu-link capitalize">
-                      <a onClick={handleMenuToggle} href={`#${section}`}>
+                      <Link
+                        to={section}
+                        smooth={true}
+                        duration={5000}
+                        offset={0}
+                        onClick={handleMenuToggle}
+                        className="cursor-pointer"
+                      >
                         {section}
-                      </a>
+                      </Link>
                     </div>
                   ),
                 )}
