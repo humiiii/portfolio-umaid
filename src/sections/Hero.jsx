@@ -7,8 +7,27 @@ import { useMediaQuery } from "react-responsive";
 import AnimatedHeader from "../components/AnimatedHeader";
 
 const Hero = ({ start }) => {
-  const isMobile = useMediaQuery({ maxWidth: 853 });
+  const isSmallScreen = useMediaQuery({ maxWidth: 768 });
   const aboutTextBreak = useMediaQuery({ maxWidth: 767 });
+  
+  // Calculate a dynamic scale for medium and large screens
+  const [dynamicScale, setDynamicScale] = React.useState(1);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (!isSmallScreen) {
+        // Dynamic scaling factor: 1.0 at 1440px, scaling with viewport
+        const scale = Math.min(1.2, Math.max(0.7, window.innerWidth / 1440));
+        setDynamicScale(scale);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isSmallScreen]);
+
+  const planetScale = isSmallScreen ? 0.6 : dynamicScale;
 
   const aboutText = aboutTextBreak
     ? `But perhaps you hate a thing and it is 
@@ -41,7 +60,7 @@ const Hero = ({ start }) => {
         >
           <ambientLight intensity={0.5} />
           <Float speed={0.5}>
-            <Planet scale={isMobile ? 0.7 : 1} start={start} />
+            <Planet scale={planetScale} start={start} />
           </Float>
           <Environment resolution={256}>
             <group rotation={[-Math.PI / 3, 4, 1]}>

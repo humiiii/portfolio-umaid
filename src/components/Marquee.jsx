@@ -1,8 +1,6 @@
 import { Icon } from "@iconify/react";
 import gsap from "gsap";
-import { Observer } from "gsap/all";
 import { useEffect, useRef } from "react";
-gsap.registerPlugin(Observer);
 
 const Marquee = ({
   items,
@@ -143,37 +141,8 @@ const Marquee = ({
       speed: 1.2,
     });
 
-    const observer = Observer.create({
-      target: window,
-      type: "wheel,touch",
-      onChangeY(self) {
-        let factor = 2.5;
-        if ((!reverse && self.deltaY < 0) || (reverse && self.deltaY > 0)) {
-          factor *= -1;
-        }
-        gsap
-          .timeline({
-            defaults: { ease: "none" },
-          })
-          .to(tl, {
-            timeScale: factor * 2.5,
-            duration: 0.2,
-            overwrite: true,
-          })
-          .to(
-            tl,
-            {
-              timeScale: factor / 2.5,
-              duration: 1,
-            },
-            "+=0.3",
-          );
-      },
-    });
-
     return () => {
       tl.kill();
-      observer.kill();
     };
   }, [items, reverse]);
 
