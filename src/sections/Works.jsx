@@ -15,18 +15,9 @@ const Works = () => {
   const overlayRefs = useRef([]);
 
   const mouse = useRef({ x: 0, y: 0 });
-  const moveX = useRef(null);
-  const moveY = useRef(null);
 
   useGSAP(() => {
-    moveX.current = gsap.quickTo(previewRef.current, "x", {
-      duration: 1.5,
-      ease: "power3.out",
-    });
-    moveY.current = gsap.quickTo(previewRef.current, "y", {
-      duration: 2,
-      ease: "power3.out",
-    });
+    gsap.set(previewRef.current, { xPercent: -50, yPercent: -50 });
 
     gsap.from("#project", {
       y: 100,
@@ -64,14 +55,14 @@ const Works = () => {
     gsap.to(previewRef.current, {
       opacity: 1,
       scale: 1,
-      duration: 0.3,
-      ease: "power2.out",
+      duration: 0.4,
+      ease: "power4.out",
+      overwrite: "auto",
     });
   };
 
   const handleMouseLeave = (index) => {
     if (window.innerWidth < 768) return;
-    setCurrentIndex(null);
 
     const el = overlayRefs.current[index];
     if (!el) return;
@@ -87,20 +78,36 @@ const Works = () => {
       opacity: 0,
       scale: 0.95,
       duration: 0.3,
-      ease: "power2.out",
+      ease: "power2.inOut",
+      overwrite: "auto",
+      onComplete: () => {
+        setCurrentIndex(null);
+      }
     });
   };
 
   const handleMouseMove = (e) => {
     if (window.innerWidth < 768) return;
-    mouse.current.x = e.clientX + 24;
-    mouse.current.y = e.clientY + 24;
-    moveX.current(mouse.current.x);
-    moveY.current(mouse.current.y);
+    const { clientX, clientY } = e;
+
+    gsap.to(previewRef.current, {
+      x: clientX,
+      y: clientY,
+      duration: 0.8,
+      ease: "power3.out",
+      overwrite: "auto",
+    });
   };
 
   return (
-    <section id="work" className="flex min-h-screen flex-col">
+    <section
+      id="work"
+      className="flex min-h-screen flex-col"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => {
+        gsap.to(previewRef.current, { opacity: 0, duration: 0.3 });
+      }}
+    >
       <AnimatedHeader
         title={"works"}
         subTitle={"Build. Burnish. Begin again"}
@@ -108,10 +115,7 @@ const Works = () => {
         textColor={"text-black"}
         withScrollTrigger={true}
       />
-      <div
-        className="relative flex flex-col font-light"
-        onMouseMove={handleMouseMove}
-      >
+      <div className="relative flex flex-col font-light">
         {projects.map((project, index) => (
           <div
             key={project.id}
@@ -172,15 +176,13 @@ const Works = () => {
         {/* desktop Flaoting preview image */}
         <div
           ref={previewRef}
-          className="pointer-events-none fixed -top-2/6 left-0 z-50 hidden w-[960px] overflow-hidden border-8 border-black opacity-0 md:block"
+          className="pointer-events-none fixed top-0 left-0 z-50 hidden aspect-[16/10] w-[420px] overflow-hidden rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] opacity-0 md:block"
         >
-          {currentIndex !== null && (
-            <img
-              src={projects[currentIndex].image}
-              alt="preview"
-              className="h-full w-full object-cover"
-            />
-          )}
+          <img
+            src={currentIndex !== null ? projects[currentIndex].image : ""}
+            alt="preview"
+            className={`h-full w-full scale-110 object-cover transition-opacity duration-300 ${currentIndex !== null ? 'opacity-100' : 'opacity-0'}`}
+          />
         </div>
       </div>
     </section>

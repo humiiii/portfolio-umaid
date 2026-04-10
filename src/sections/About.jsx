@@ -50,7 +50,7 @@ const About = () => {
         <img
           ref={imgRef}
           className="w-md rounded-3xl"
-          src="/portfolio-umaid/images/me.jpg"
+          src="/images/me.jpeg"
           alt="umaid"
         />
         <div className="flex flex-col gap-6 text-justify">

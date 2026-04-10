@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { Icon } from "@iconify/react";
 import gsap from "gsap";
 import { Observer } from "gsap/all";
 import { useEffect, useRef } from "react";
@@ -183,11 +183,11 @@ const Marquee = ({
       className={`marquee-text-responsive flex h-20 w-full items-center overflow-hidden font-light whitespace-nowrap uppercase md:h-[100px] ${className}`}
     >
       <div ref={wrapperRef} className="flex">
-        {items.map((text, index) => (
+        {[...items, ...items, ...items].map((text, index) => (
           <span
             key={index}
             ref={(el) => (itemsRef.current[index] = el)}
-            className="mx-4 flex items-center gap-x-32 px-16"
+            className="mx-4 flex items-center gap-x-12 px-8"
           >
             {text} <Icon icon={icon} className={iconClassName} />
           </span>

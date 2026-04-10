@@ -7,29 +7,31 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
   useGSAP(() => {
+    const isMobile = window.innerWidth < 768;
+
     gsap.to("#title_service_1", {
-      xPercent: 20,
+      xPercent: isMobile ? 200 : 20,
       scrollTrigger: {
         target: "#title_service_1",
         scrub: true,
       },
     });
     gsap.to("#title_service_2", {
-      xPercent: -30,
+      xPercent: isMobile ? -400 : -30,
       scrollTrigger: {
         target: "#title_service_2",
         scrub: true,
       },
     });
     gsap.to("#title_service_3", {
-      xPercent: 100,
+      xPercent: isMobile ? 400 : 100,
       scrollTrigger: {
         target: "#title_service_3",
         scrub: true,
       },
     });
     gsap.to("#title_service_4", {
-      xPercent: -100,
+      xPercent: isMobile ? -500 : -100,
       scrollTrigger: {
         target: "#title_service_4",
         scrub: true,
@@ -47,7 +49,7 @@ const Services = () => {
         className="flex translate-x-16 items-center justify-center gap-4 capitalize"
       >
         <p className="font-normal">development</p>
-        <div className="bg-gold h-1 w-10 md:w-32" />
+        <div className="bg-gold h-1 w-20 flex-shrink-0 md:h-1 md:w-32" />
         <p>deployment</p>
       </div>
       <div
@@ -56,9 +58,9 @@ const Services = () => {
       >
         <p className="uppercase">api</p>
         <span>s</span>
-        <div className="bg-gold h-1 w-10 md:w-32" />
+        <div className="bg-gold h-1 w-20 flex-shrink-0 md:h-1 md:w-32" />
         <p className="font-normal capitalize">frontends</p>
-        <div className="bg-gold h-1 w-10 md:w-32" />
+        <div className="bg-gold h-1 w-20 flex-shrink-0 md:h-1 md:w-32" />
         <p className="capitalize">scalability</p>
       </div>
       <div id="title_service_4" className="translate-x-48">

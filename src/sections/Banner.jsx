@@ -3,7 +3,7 @@ import Marquee from "../components/Marquee";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-const ContactSummary = () => {
+const Banner = () => {
   const containerRef = useRef(null);
   const items = [
     "Innovation",
@@ -58,4 +58,4 @@ const ContactSummary = () => {
   );
 };
 
-export default ContactSummary;
+export default Banner;

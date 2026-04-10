@@ -17,22 +17,22 @@ const AnimatedTextLines = ({ text, className, start = false }) => {
       // If `start` is true, animate immediately once
       if (start) {
         gsap.from(linesRef.current, {
-          y: 100,
+          y: 30,
           opacity: 0,
-          duration: 1,
-          ease: "back.out",
-          stagger: 0.3,
+          duration: 2.2,
+          ease: "power3.out",
+          stagger: 0.1,
         });
         return;
       }
 
       // Otherwise animate on scroll into view
       gsap.from(linesRef.current, {
-        y: 100,
+        y: 30,
         opacity: 0,
-        duration: 1,
-        ease: "back.out",
-        stagger: 0.3,
+        duration: 2.2,
+        ease: "power3.out",
+        stagger: 0.1,
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",

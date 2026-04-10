@@ -11,7 +11,7 @@ export function Planet({ start, ...props }) {
   const shapeContainer = useRef(null);
   const shperesContainer = useRef(null);
   const ringContainer = useRef(null);
-  const { nodes, materials } = useGLTF("/portfolio-umaid/models/Planet.glb");
+  const { nodes, materials } = useGLTF("/models/Planet.glb");
 
   useGSAP(() => {
     if (!start) return;
@@ -79,4 +79,4 @@ export function Planet({ start, ...props }) {
   );
 }
 
-useGLTF.preload("/portfolio-umaid/models/Planet.glb");
+useGLTF.preload("/models/Planet.glb");

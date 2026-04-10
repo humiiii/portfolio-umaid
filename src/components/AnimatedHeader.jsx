@@ -23,14 +23,25 @@ const AnimatedHeader = ({
       if (start) {
         const tl = gsap.timeline();
         tl.from(contextRef.current, {
-          y: "50vh",
-          duration: 1,
-          ease: "circ.out",
+          y: 60,
+          duration: 2.5,
+          ease: "power4.out",
         });
+        
+        // Stagger subtitle and title
+        const subtitle = headerRef.current.querySelector('p');
+        const titleEl = headerRef.current.querySelector('h1');
+        
         tl.from(
-          headerRef.current,
-          { opacity: 0, y: 200, duration: 1, ease: "circ.out" },
-          "<+0.2",
+          [subtitle, titleEl],
+          { 
+            opacity: 0, 
+            y: 40, 
+            duration: 2, 
+            ease: "power4.out",
+            stagger: 0.15
+          },
+          "<+0.3",
         );
         return;
       }
@@ -44,14 +55,25 @@ const AnimatedHeader = ({
           },
         });
         tl.from(contextRef.current, {
-          y: "50vh",
-          duration: 1,
-          ease: "circ.out",
+          y: 60,
+          duration: 2.5,
+          ease: "power4.out",
         });
+
+        // Stagger subtitle and title
+        const subtitle = headerRef.current.querySelector('p');
+        const titleEl = headerRef.current.querySelector('h1');
+
         tl.from(
-          headerRef.current,
-          { opacity: 0, y: 200, duration: 1, ease: "circ.out" },
-          "<+0.2",
+          [subtitle, titleEl],
+          { 
+            opacity: 0, 
+            y: 40, 
+            duration: 2, 
+            ease: "power4.out",
+            stagger: 0.15 
+          },
+          "<+0.3",
         );
       }
     },
@@ -73,7 +95,7 @@ const AnimatedHeader = ({
           </p>
           <div className="px-10">
             <h1
-              className={`banner-text-responsive flex flex-col flex-wrap gap-12 ${textColor} pb-1 uppercase sm:gap-16 sm:pb-0 md:block`}
+              className={`banner-text-responsive flex flex-col flex-wrap gap-12 ${textColor} pb-1 sm:pb-4 uppercase sm:gap-16  md:block`}
             >
               {title}
             </h1>

@@ -1,9 +1,132 @@
 import React, { useRef, useEffect, useState } from "react";
 import { socials } from "../constants";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { CustomEase, SplitText } from "gsap/all";
 import Lenis from "lenis";
 import { Link } from "react-scroll";
+
+const StaggeredLink = ({ title, to, index, onClick, className, onMouseEnter, onMouseLeave }) => {
+  const containerRef = useRef(null);
+  const { contextSafe } = useGSAP({ scope: containerRef });
+
+  const handleMouseEnter = contextSafe(() => {
+    gsap.to(containerRef.current.querySelectorAll(".primary"), {
+      y: "-100%",
+      stagger: 0.03,
+      duration: 0.4,
+      ease: "hop",
+      overwrite: true,
+    });
+    gsap.to(containerRef.current.querySelectorAll(".secondary"), {
+      y: "-100%",
+      stagger: 0.03,
+      duration: 0.4,
+      ease: "hop",
+      overwrite: true,
+    });
+    if (onMouseEnter) onMouseEnter();
+  });
+
+  const handleMouseLeave = contextSafe(() => {
+    gsap.to(containerRef.current.querySelectorAll(".primary"), {
+      y: "0%",
+      stagger: 0.03,
+      duration: 0.4,
+      ease: "hop",
+      overwrite: true,
+    });
+    gsap.to(containerRef.current.querySelectorAll(".secondary"), {
+      y: "0%",
+      stagger: 0.03,
+      duration: 0.4,
+      ease: "hop",
+      overwrite: true,
+    });
+    if (onMouseLeave) onMouseLeave();
+  });
+
+  return (
+    <div className="menu-link-wrapper" ref={containerRef}>
+      <span className="menu-link-index font-inter">{index < 10 ? `0${index + 1}` : index + 1}</span>
+      <Link
+        to={to}
+        smooth={true}
+        duration={5000}
+        offset={0}
+        onClick={onClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        className={`${className} cursor-pointer inline-block`}
+      >
+        {title.split("").map((char, i) => (
+          <span key={i} className="char-container overflow-hidden relative" style={{ display: "inline-block" }}>
+            <span className="char-inner primary block">{char === " " ? "\u00A0" : char}</span>
+            <span className="char-inner secondary absolute top-full left-0 block">{char === " " ? "\u00A0" : char}</span>
+          </span>
+        ))}
+      </Link>
+    </div>
+  );
+};
+
+const StaggeredSocial = ({ title, href, className }) => {
+  const containerRef = useRef(null);
+  const { contextSafe } = useGSAP({ scope: containerRef });
+
+  const onMouseEnter = contextSafe(() => {
+    gsap.to(containerRef.current.querySelectorAll(".primary"), {
+      y: "-100%",
+      stagger: 0.03,
+      duration: 0.4,
+      ease: "hop",
+      overwrite: true,
+    });
+    gsap.to(containerRef.current.querySelectorAll(".secondary"), {
+      y: "-100%",
+      stagger: 0.03,
+      duration: 0.4,
+      ease: "hop",
+      overwrite: true,
+    });
+  });
+
+  const onMouseLeave = contextSafe(() => {
+    gsap.to(containerRef.current.querySelectorAll(".primary"), {
+      y: "0%",
+      stagger: 0.03,
+      duration: 0.4,
+      ease: "hop",
+      overwrite: true,
+    });
+    gsap.to(containerRef.current.querySelectorAll(".secondary"), {
+      y: "0%",
+      stagger: 0.03,
+      duration: 0.4,
+      ease: "hop",
+      overwrite: true,
+    });
+  });
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      className={`${className} inline-block relative`}
+      ref={containerRef}
+    >
+      {title.split("").map((char, i) => (
+        <span key={i} className="char-container overflow-hidden relative" style={{ display: "inline-block", height: "1.2em" }}>
+          <span className="char-inner primary block">{char === " " ? "\u00A0" : char}</span>
+          <span className="char-inner secondary absolute top-full left-0 block">{char === " " ? "\u00A0" : char}</span>
+        </span>
+      ))}
+    </a>
+  );
+};
 
 const Navbar = () => {
   // Refs for DOM elements
@@ -16,6 +139,27 @@ const Navbar = () => {
   const menuColRefs = useRef([]);
 
   // State
+  const [activeImage, setActiveImage] = useState("/images/me.jpeg");
+  const mediaImgRef = useRef(null);
+
+  const handleHover = (imagePath) => {
+    if (activeImage === imagePath) return;
+    
+    gsap.to(mediaImgRef.current, {
+      opacity: 0,
+      scale: 1.1,
+      duration: 0.4,
+      ease: "power2.inOut",
+      onComplete: () => {
+        setActiveImage(imagePath);
+        gsap.fromTo(mediaImgRef.current, 
+          { opacity: 0, scale: 1.2 },
+          { opacity: 0.5, scale: 1, duration: 0.6, ease: "power2.out" }
+        );
+      }
+    });
+  };
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [showBurger, setShowBurger] = useState(true);
@@ -202,6 +346,8 @@ const Navbar = () => {
     }
   };
 
+  const menuItems = ["home", "words", "about", "work", "contact"];
+
   return (
     <nav className="navbar">
       <div className="menu-bar">
@@ -225,56 +371,61 @@ const Navbar = () => {
       </div>
       <div className="menu-overlay" ref={menuOverlayRef}>
         <div className="menu-overlay-content" ref={menuOverlayContentRef}>
-          <div className="menu-media-wrapper" ref={menuMediaWrapperRef}>
-            <img src="/portfolio-umaid/images/me.jpg" alt="" />
+          {/* Left Panel: Media */}
+          <div className="menu-media-panel" ref={menuMediaWrapperRef}>
+            <img 
+              src={activeImage} 
+              alt="Section Preview" 
+              className="menu-media-img"
+              ref={mediaImgRef}
+            />
           </div>
-          <div className="menu-content-wrapper">
-            <div className="menu-content-main">
-              <div
-                className="menu-col"
-                ref={(el) => (menuColRefs.current[0] = el)}
-              >
-                {["home", "words", "about", "work", "contact"].map(
-                  (section, index) => (
-                    <div key={index} className="menu-link capitalize">
-                      <Link
-                        to={section}
-                        smooth={true}
-                        duration={5000}
-                        offset={0}
-                        onClick={handleMenuToggle}
-                        className="cursor-pointer"
-                      >
-                        {section}
-                      </Link>
-                    </div>
-                  ),
-                )}
-              </div>
+
+          {/* Right Panel: Links */}
+          <div className="menu-links-panel">
+            <div
+              className="menu-col flex-1 flex flex-col justify-center"
+              ref={(el) => (menuColRefs.current[0] = el)}
+            >
+                {menuItems.map((section, index) => (
+                <div key={index} className="menu-link capitalize">
+                  <StaggeredLink
+                    to={section}
+                    title={section}
+                    index={index}
+                    onClick={handleMenuToggle}
+                    onMouseEnter={() => {
+                      // Using the same high-end abstract image for all for now, 
+                      // but prepared for specific reveals.
+                      handleHover("/images/me.jpeg");
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+
+            <div className="menu-footer">
               <div
                 className="menu-col"
                 ref={(el) => (menuColRefs.current[1] = el)}
               >
-                {socials.map((social, index) => (
-                  <div className="menu-tag" key={index}>
-                    <a
+                <div className="flex gap-4">
+                  {socials.map((social, index) => (
+                    <StaggeredSocial
+                      key={index}
                       href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {`{ ${social.name} }`}
-                    </a>
-                  </div>
-                ))}
+                      title={social.name}
+                      className="text-white/60 hover:text-white transition-colors"
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className="menu-footer">
               <div
-                className="menu-col"
+                className="menu-col text-right"
                 ref={(el) => (menuColRefs.current[2] = el)}
               >
-                <p>E-mail</p>
-                <p>muhammadumaid6@gmail.com</p>
+                <p className="opacity-40 uppercase tracking-widest text-xs mb-1">E-mail</p>
+                <p className="text-sm font-medium">muhammadumaid6@gmail.com</p>
               </div>
             </div>
           </div>
