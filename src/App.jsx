@@ -11,6 +11,7 @@ import Banner from "./sections/Banner";
 import Contact from "./sections/Contact";
 import { useProgress } from "@react-three/drei";
 import gsap from "gsap";
+import { Analytics } from "@vercel/analytics/react";
 
 const App = () => {
   const { progress } = useProgress();
@@ -92,6 +93,7 @@ const App = () => {
         <Works />
         <Banner />
         <Contact />
+        <Analytics />
       </div>
     </ReactLenis>
   );
