@@ -58,11 +58,7 @@ const Hero = ({ start }) => {
     { QUR'AN 2:216 }`;
 
   return (
-    <section
-      id="home"
-      className="flex flex-col justify-end"
-      style={{ height: lockedHeight }}
-    >
+    <section id="home" className="flex min-h-screen flex-col justify-end">
       <AnimatedHeader
         title="m. umaid"
         subTitle="Allah is the best of planners. { QUR'AN 3:54 }"

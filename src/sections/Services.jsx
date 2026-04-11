@@ -10,56 +10,37 @@ const Services = () => {
     const isMobile = window.innerWidth < 768;
 
     gsap.to("#title_service_1", {
-      xPercent: isMobile ? 30 : 20,
-      force3D: true,
+      xPercent: isMobile ? 200 : 20,
       scrollTrigger: {
-        trigger: "#title_service_1",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1,
-        invalidateOnRefresh: true,
+        target: "#title_service_1",
+        scrub: true,
       },
     });
     gsap.to("#title_service_2", {
-      xPercent: isMobile ? -40 : -30,
-      force3D: true,
+      xPercent: isMobile ? -400 : -30,
       scrollTrigger: {
-        trigger: "#title_service_2",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1,
-        invalidateOnRefresh: true,
+        target: "#title_service_2",
+        scrub: true,
       },
     });
     gsap.to("#title_service_3", {
-      xPercent: isMobile ? 50 : 100,
-      force3D: true,
+      xPercent: isMobile ? 400 : 100,
       scrollTrigger: {
-        trigger: "#title_service_3",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1,
-        invalidateOnRefresh: true,
+        target: "#title_service_3",
+        scrub: true,
       },
     });
     gsap.to("#title_service_4", {
-      xPercent: isMobile ? -60 : -100,
-      force3D: true,
+      xPercent: isMobile ? -500 : -100,
       scrollTrigger: {
-        trigger: "#title_service_4",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1,
-        invalidateOnRefresh: true,
+        target: "#title_service_4",
+        scrub: true,
       },
     });
   });
 
   return (
-    <section
-      id="services"
-      className="contact-text-responsive mt-20 mb-42 overflow-hidden text-center leading-snug font-light"
-    >
+    <section className="contact-text-responsive mt-20 mb-42 overflow-hidden text-center leading-snug font-light">
       <div id="title_service_1" className="capitalize">
         <p>architecture</p>
       </div>
