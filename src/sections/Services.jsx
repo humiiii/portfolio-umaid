@@ -56,7 +56,10 @@ const Services = () => {
   });
 
   return (
-    <section className="contact-text-responsive mt-20 mb-42 overflow-hidden text-center leading-snug font-light">
+    <section
+      id="services"
+      className="contact-text-responsive mt-20 mb-42 overflow-hidden text-center leading-snug font-light"
+    >
       <div id="title_service_1" className="capitalize">
         <p>architecture</p>
       </div>

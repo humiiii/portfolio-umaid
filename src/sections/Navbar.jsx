@@ -52,7 +52,7 @@ const StaggeredLink = ({ title, to, index, onClick, className, onMouseEnter, onM
       <Link
         to={to}
         smooth={true}
-        duration={5000}
+        duration={1000}
         offset={0}
         onClick={onClick}
         onMouseEnter={handleMouseEnter}
@@ -218,13 +218,19 @@ const Navbar = () => {
     };
   }, []);
 
-  // ✅ Scroll behavior — hide burger on scroll down, show on scroll up
+  // ✅ Scroll behavior — hide burger on scroll down, show on scroll up with threshold to avoid jitter
   useEffect(() => {
     let lastScrollY = window.scrollY;
+    const threshold = 10; // px
+    
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      setShowBurger(currentScrollY <= lastScrollY || currentScrollY < 10);
-      lastScrollY = currentScrollY;
+      const scrollDiff = Math.abs(currentScrollY - lastScrollY);
+      
+      if (scrollDiff >= threshold) {
+        setShowBurger(currentScrollY <= lastScrollY || currentScrollY < 10);
+        lastScrollY = currentScrollY;
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
