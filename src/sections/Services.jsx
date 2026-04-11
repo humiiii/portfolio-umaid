@@ -10,37 +10,45 @@ const Services = () => {
     const isMobile = window.innerWidth < 768;
 
     gsap.to("#title_service_1", {
-      xPercent: isMobile ? 200 : 20,
+      xPercent: isMobile ? 30 : 20,
       force3D: true,
       scrollTrigger: {
         trigger: "#title_service_1",
+        start: "top bottom",
+        end: "bottom top",
         scrub: 1,
         invalidateOnRefresh: true,
       },
     });
     gsap.to("#title_service_2", {
-      xPercent: isMobile ? -400 : -30,
+      xPercent: isMobile ? -40 : -30,
       force3D: true,
       scrollTrigger: {
         trigger: "#title_service_2",
+        start: "top bottom",
+        end: "bottom top",
         scrub: 1,
         invalidateOnRefresh: true,
       },
     });
     gsap.to("#title_service_3", {
-      xPercent: isMobile ? 400 : 100,
+      xPercent: isMobile ? 50 : 100,
       force3D: true,
       scrollTrigger: {
         trigger: "#title_service_3",
+        start: "top bottom",
+        end: "bottom top",
         scrub: 1,
         invalidateOnRefresh: true,
       },
     });
     gsap.to("#title_service_4", {
-      xPercent: isMobile ? -500 : -100,
+      xPercent: isMobile ? -60 : -100,
       force3D: true,
       scrollTrigger: {
         trigger: "#title_service_4",
+        start: "top bottom",
+        end: "bottom top",
         scrub: 1,
         invalidateOnRefresh: true,
       },
