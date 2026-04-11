@@ -11,30 +11,38 @@ const Services = () => {
 
     gsap.to("#title_service_1", {
       xPercent: isMobile ? 200 : 20,
+      force3D: true,
       scrollTrigger: {
-        target: "#title_service_1",
-        scrub: true,
+        trigger: "#title_service_1",
+        scrub: 1,
+        invalidateOnRefresh: true,
       },
     });
     gsap.to("#title_service_2", {
       xPercent: isMobile ? -400 : -30,
+      force3D: true,
       scrollTrigger: {
-        target: "#title_service_2",
-        scrub: true,
+        trigger: "#title_service_2",
+        scrub: 1,
+        invalidateOnRefresh: true,
       },
     });
     gsap.to("#title_service_3", {
       xPercent: isMobile ? 400 : 100,
+      force3D: true,
       scrollTrigger: {
-        target: "#title_service_3",
-        scrub: true,
+        trigger: "#title_service_3",
+        scrub: 1,
+        invalidateOnRefresh: true,
       },
     });
     gsap.to("#title_service_4", {
       xPercent: isMobile ? -500 : -100,
+      force3D: true,
       scrollTrigger: {
-        target: "#title_service_4",
-        scrub: true,
+        trigger: "#title_service_4",
+        scrub: 1,
+        invalidateOnRefresh: true,
       },
     });
   });
