@@ -7,7 +7,7 @@ import { useGLTF } from "@react-three/drei";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-export function Planet({ start, ...props }) {
+export function Planet({ start, isMobile, ...props }) {
   const shapeContainer = useRef(null);
   const shperesContainer = useRef(null);
   const ringContainer = useRef(null);
@@ -50,15 +50,15 @@ export function Planet({ start, ...props }) {
     <group ref={shapeContainer} {...props} dispose={null}>
       <group ref={shperesContainer}>
         <mesh
-          castShadow
-          receiveShadow
+          castShadow={!isMobile}
+          receiveShadow={!isMobile}
           geometry={nodes.Sphere.geometry}
           material={materials["Material.002"]}
           rotation={[0, 0, 0.741]}
         />
         <mesh
-          castShadow
-          receiveShadow
+          castShadow={!isMobile}
+          receiveShadow={!isMobile}
           geometry={nodes.Sphere2.geometry}
           material={materials["Material.001"]}
           position={[0.647, 1.03, -0.724]}
@@ -68,8 +68,8 @@ export function Planet({ start, ...props }) {
       </group>
       <mesh
         ref={ringContainer}
-        castShadow
-        receiveShadow
+        castShadow={!isMobile}
+        receiveShadow={!isMobile}
         geometry={nodes.Ring.geometry}
         material={materials["Material.001"]}
         rotation={[-0.124, 0.123, -0.778]}

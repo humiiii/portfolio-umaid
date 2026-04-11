@@ -8,159 +8,62 @@ const Marquee = ({
   icon = "mdi:star-four-points",
   iconClassName = "",
   reverse = false,
+  speed = 1.3,
 }) => {
   const containerRef = useRef(null);
-  const itemsRef = useRef([]);
-  const wrapperRef = useRef(null);
-
-  function horizontalLoop(items, config) {
-    items = gsap.utils.toArray(items);
-    config = config || {};
-    let tl = gsap.timeline({
-        repeat: config.repeat,
-        paused: config.paused,
-        defaults: { ease: "none" },
-        onReverseComplete: () =>
-          tl.totalTime(tl.rawTime() + tl.duration() * 100),
-      }),
-      length = items.length,
-      startX = items[0].offsetLeft,
-      times = [],
-      widths = [],
-      xPercents = [],
-      curIndex = 0,
-      pixelsPerSecond = (config.speed || 1) * 100,
-      snap =
-        config.snap === false ? (v) => v : gsap.utils.snap(config.snap || 1),
-      totalWidth,
-      curX,
-      distanceToStart,
-      distanceToLoop,
-      item,
-      i;
-
-    // Calculate item widths and positions
-    gsap.set(items, {
-      xPercent: (i, el) => {
-        let w = (widths[i] =
-          parseFloat(gsap.getProperty(el, "width", "px")) +
-          parseFloat(gsap.getProperty(el, "marginRight", "px") || 0));
-        xPercents[i] = snap(
-          (parseFloat(gsap.getProperty(el, "x", "px")) / w) * 100 +
-            gsap.getProperty(el, "xPercent"),
-        );
-        return xPercents[i];
-      },
-    });
-
-    gsap.set(items, { x: 0 });
-
-    // Calculate total width including spacing
-    totalWidth = 0;
-    for (i = 0; i < length; i++) {
-      item = items[i];
-      const itemWidth = widths[i];
-      const marginRight =
-        parseFloat(gsap.getProperty(item, "marginRight", "px")) || 0;
-      totalWidth += itemWidth + marginRight;
-    }
-    totalWidth += parseFloat(config.paddingRight) || 0;
-
-    for (i = 0; i < length; i++) {
-      item = items[i];
-      curX = (xPercents[i] / 100) * widths[i];
-      distanceToStart = item.offsetLeft + curX - startX;
-      distanceToLoop =
-        distanceToStart + widths[i] * gsap.getProperty(item, "scaleX");
-
-      tl.to(
-        item,
-        {
-          xPercent: snap(((curX - distanceToLoop) / widths[i]) * 100),
-          duration: distanceToLoop / pixelsPerSecond,
-        },
-        0,
-      )
-        .fromTo(
-          item,
-          {
-            xPercent: snap(
-              ((curX - distanceToLoop + totalWidth) / widths[i]) * 100,
-            ),
-          },
-          {
-            xPercent: xPercents[i],
-            duration:
-              (curX - distanceToLoop + totalWidth - curX) / pixelsPerSecond,
-            immediateRender: false,
-          },
-          distanceToLoop / pixelsPerSecond,
-        )
-        .add("label" + i, distanceToStart / pixelsPerSecond);
-
-      times[i] = distanceToStart / pixelsPerSecond;
-    }
-
-    function toIndex(index, vars) {
-      vars = vars || {};
-      Math.abs(index - curIndex) > length / 2 &&
-        (index += index > curIndex ? -length : length);
-      let newIndex = gsap.utils.wrap(0, length, index),
-        time = times[newIndex];
-      if (time > tl.time() !== index > curIndex) {
-        vars.modifiers = { time: gsap.utils.wrap(0, tl.duration()) };
-        time += tl.duration() * (index > curIndex ? 1 : -1);
-      }
-      curIndex = newIndex;
-      vars.overwrite = true;
-      return tl.tweenTo(time, vars);
-    }
-
-    tl.next = (vars) => toIndex(curIndex + 1, vars);
-    tl.previous = (vars) => toIndex(curIndex - 1, vars);
-    tl.current = () => curIndex;
-    tl.toIndex = (index, vars) => toIndex(index, vars);
-    tl.times = times;
-    tl.progress(1, true).progress(0, true);
-
-    if (config.reversed) {
-      tl.vars.onReverseComplete();
-      tl.reverse();
-    }
-
-    return tl;
-  }
+  const trackRef = useRef(null);
 
   useEffect(() => {
-    if (!itemsRef.current.length) return;
+    if (!trackRef.current) return;
 
-    const tl = horizontalLoop(itemsRef.current, {
+    const track = trackRef.current;
+    
+    // Total width of one set of items
+    // We animate from 0 to -50% because we have two identical sets
+    const tl = gsap.to(track, {
+      xPercent: reverse ? 0 : -50,
+      duration: 30 / speed,
       repeat: -1,
-      paddingRight: 30,
-      reversed: reverse,
-      speed: 1.2,
+      ease: "none",
+      paused: false,
     });
+
+    // Starting position
+    if (reverse) {
+      gsap.set(track, { xPercent: -50 });
+    } else {
+      gsap.set(track, { xPercent: 0 });
+    }
 
     return () => {
       tl.kill();
     };
-  }, [items, reverse]);
+  }, [items, reverse, speed]);
+
+  const MarqueeLine = () => (
+    <div className="flex shrink-0 items-center">
+      {items.map((text, index) => (
+        <span
+          key={index}
+          className="mx-4 flex items-center px-8"
+        >
+          <span className="mr-12">{text}</span>
+          <Icon icon={icon} className={`${iconClassName}`} />
+        </span>
+      ))}
+    </div>
+  );
 
   return (
     <div
       ref={containerRef}
-      className={`marquee-text-responsive flex h-20 w-full items-center overflow-hidden font-light whitespace-nowrap uppercase md:h-[100px] ${className}`}
+      className={`relative flex h-20 w-full items-center overflow-hidden font-light whitespace-nowrap uppercase marquee-text-responsive md:h-[100px] ${className}`}
     >
-      <div ref={wrapperRef} className="flex">
-        {[...items, ...items, ...items].map((text, index) => (
-          <span
-            key={index}
-            ref={(el) => (itemsRef.current[index] = el)}
-            className="mx-4 flex items-center gap-x-12 px-8"
-          >
-            {text} <Icon icon={icon} className={iconClassName} />
-          </span>
-        ))}
+      <div ref={trackRef} className="marquee-track flex w-max shrink-0">
+        <MarqueeLine />
+        <MarqueeLine />
+        <MarqueeLine />
+        <MarqueeLine />
       </div>
     </div>
   );

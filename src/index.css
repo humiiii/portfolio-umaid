@@ -411,6 +411,12 @@ body {
   @apply text-[28px] sm:text-[36px] lg:text-[42px];
 }
 
+/* Optimization for GPU acceleration */
+.marquee-track, 
+[id^="title_service_"] {
+  will-change: transform;
+}
+
 @utility contact-text-responsive {
   @apply text-[42px] sm:text-[52px] md:text-[62px] lg:text-[100px];
 }
