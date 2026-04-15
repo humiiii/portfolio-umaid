@@ -15,9 +15,11 @@ const Hero = ({ start }) => {
   const [lockedHeight, setLockedHeight] = React.useState("100svh");
   const lastWidth = React.useRef(typeof window !== "undefined" ? window.innerWidth : 0);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
+    const isClient = typeof window !== "undefined";
+    
     // Lock height on mobile to prevent address bar jumps
-    if (isSmallScreen && typeof window !== "undefined") {
+    if (isSmallScreen && isClient) {
       setLockedHeight(`${window.innerHeight}px`);
     }
 
@@ -27,7 +29,7 @@ const Hero = ({ start }) => {
         lastWidth.current = currentWidth;
         
         // Only update height on width change if we're on mobile (for orientation shifts)
-        if (isSmallScreen) {
+        if (isSmallScreen && isClient) {
           setLockedHeight(`${window.innerHeight}px`);
         }
 
@@ -39,9 +41,11 @@ const Hero = ({ start }) => {
       }
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    if (isClient) {
+      handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
   }, [isSmallScreen]);
 
   const planetScale = isSmallScreen ? 0.6 : dynamicScale;
@@ -58,7 +62,11 @@ const Hero = ({ start }) => {
     { QUR'AN 2:216 }`;
 
   return (
-    <section id="home" className="flex min-h-screen flex-col justify-end">
+    <section
+      id="home"
+      className="relative flex flex-col justify-end overflow-hidden"
+      style={{ height: lockedHeight }}
+    >
       <AnimatedHeader
         title="m. umaid"
         subTitle="Allah is the best of planners. { QUR'AN 3:54 }"
@@ -68,7 +76,7 @@ const Hero = ({ start }) => {
       />
 
       <figure
-        className="absolute inset-0 -z-50"
+        className="absolute top-0 left-0 -z-50"
         style={{ width: "100vw", height: lockedHeight }}
       >
         <Canvas
