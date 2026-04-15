@@ -6,41 +6,65 @@ import React from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
-  useGSAP(() => {
-    const isMobile = window.innerWidth < 768;
+  const containerRef = React.useRef(null);
 
-    gsap.to("#title_service_1", {
-      xPercent: isMobile ? 200 : 20,
-      scrollTrigger: {
-        target: "#title_service_1",
-        scrub: true,
-      },
-    });
-    gsap.to("#title_service_2", {
-      xPercent: isMobile ? -400 : -30,
-      scrollTrigger: {
-        target: "#title_service_2",
-        scrub: true,
-      },
-    });
-    gsap.to("#title_service_3", {
-      xPercent: isMobile ? 400 : 100,
-      scrollTrigger: {
-        target: "#title_service_3",
-        scrub: true,
-      },
-    });
-    gsap.to("#title_service_4", {
-      xPercent: isMobile ? -500 : -100,
-      scrollTrigger: {
-        target: "#title_service_4",
-        scrub: true,
-      },
-    });
-  });
+  useGSAP(
+    () => {
+      const isMobile = window.innerWidth < 768;
+      const scrubValue = 1; // Adds smoothing/inertia
+
+      gsap.to("#title_service_1", {
+        xPercent: isMobile ? 120 : 20,
+        force3D: true,
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: scrubValue,
+        },
+      });
+
+      gsap.to("#title_service_2", {
+        xPercent: isMobile ? -150 : -30,
+        force3D: true,
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: scrubValue,
+        },
+      });
+
+      gsap.to("#title_service_3", {
+        xPercent: isMobile ? 150 : 100,
+        force3D: true,
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: scrubValue,
+        },
+      });
+
+      gsap.to("#title_service_4", {
+        xPercent: isMobile ? -180 : -100,
+        force3D: true,
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: scrubValue,
+        },
+      });
+    },
+    { scope: containerRef },
+  );
 
   return (
-    <section className="contact-text-responsive mt-20 mb-42 overflow-hidden text-center leading-snug font-light">
+    <section
+      ref={containerRef}
+      className="contact-text-responsive mt-20 mb-42 overflow-hidden text-center leading-snug font-light"
+    >
       <div id="title_service_1" className="capitalize">
         <p>architecture</p>
       </div>
